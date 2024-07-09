@@ -54,7 +54,7 @@ def create_pipes():
     height1 = random.randint(0, screen_height - (2 * int(screen_height / 3)))
     height2 = screen_height - (height1 + 150)
     pipe1 = Pipe(pipe_image, 0, height1, True)
-    pipe2 = Pipe(pipe_image, height1 + 250, height2, False)
+    pipe2 = Pipe(pipe_image, height1 + 150, height2, False)
     pipes.append(pipe1)
     pipes.append(pipe2)
     rectPipe = RectPipe(pipe1.rect.x, 0, pipe1.rect.width, screen_height)
@@ -107,10 +107,9 @@ while True:
                 player.velocity = -10
             if event.key == pygame.K_RETURN and game_over:
                 reset_game()
-        
         if event.type == ADD_PIPE_EVENT:
             create_pipes()
-
+    if score<1: gravity = 0.4
     player.velocity += gravity
     if not game_over:
         if player.rect.y + player.rect.height < screen_height - 10:
